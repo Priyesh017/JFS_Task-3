@@ -1,31 +1,65 @@
-===========================================================
-            JFS TASK 3: OOPS PROGRAMMING
-             EXECUTION & PROBLEM GUIDE
-===========================================================
-PROBLEM STATEMENT CATEGORIES
-===========================================================
-TASK A: Library Management System
------------------------------------------------------------
-Design a java program that uses OOP principles to model the
-Book. Create two classes: Book and Library. The Book class
-should have attributes such as bookID, title, author, and
-isAvailable.The Library class should include an array to
-store book objects. Provide methods to add books, remove books,
-search books(using ID) and display books. Write a java program
-that demonstrates the use of these classes and methods by allowing
-the user to interact with the Library System.
+==============================================================
+                JFS TASK 3: OOPS PROGRAMMING
+                 EXECUTION & PROBLEM GUIDE
+==============================================================
 
------------------------------------------------------------
-TASK B: Tax Management System
------------------------------------------------------------
+NOTE: I implemented Encapsulation (private fields with getter
+methods). It goes slightly beyond what has been covered in the
+class so far.
+
+--------------------------------------------------------------
+                 HOW TO RUN THE SUBMISSION
+--------------------------------------------------------------
+
+TASK A: LIBRARY MANAGEMENT SYSTEM
+==============================================================
+
+STEP 1: COMPILE
+Type the following command and hit Enter:
+    javac library/management/system/*.java
+
+STEP 2: RUN
+Type the following command and hit Enter:
+    java library.management.system.Main
+
+PROBLEM STATEMENT:
+--------------------------------------------------------------
+Design a java program that uses OOP principles to model the
+Book. Create two classes: Book and Library.
+
+The Book class should have attributes such as bookID, title,
+author, and isAvailable. The Library class should include an
+array to store book objects. Provide methods to add books,
+remove books, search books (using ID) and display books.
+
+Write a java program that demonstrates the use of these
+classes and methods by allowing the user to interact with
+the Library System.
+
+
+TASK B: TAX MANAGEMENT SYSTEM
+==============================================================
+
+STEP 1: COMPILE
+Type the following command and hit Enter:
+    javac tax/management/system/*.java
+
+STEP 2: RUN
+Type the following command and hit Enter:
+    java tax.management.system.Main
+
+PROBLEM STATEMENT:
+--------------------------------------------------------------
 Create Interface Taxable with members salesTax = 7% and
 incomeTax = 10.5%. Create abstract method calcTax().
-a. Create a class Employee(empId, name, salary) and implement
-Taxable to calculate incomeTax on yearly salary.
-b. Create class Product(pid, price, quantity) and implement
-Taxable to calculate salesTax on unit price of product.
-c. Create class for main method(Say DriverMain), accept employee
-information and a product information from user and print income
-tax and sales tax respectively
 
-===========================================================
+a. Create a class Employee(empId, name, salary) and implement
+   Taxable to calculate incomeTax on yearly salary.
+
+b. Create class Product(pid, price, quantity) and implement
+   Taxable to calculate salesTax on unit price of product.
+
+c. Create class for main method (Say DriverMain), accept
+   employee information and a product information from user
+   and print income tax and sales tax respectively.
+==============================================================
