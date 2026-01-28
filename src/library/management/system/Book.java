@@ -1,6 +1,6 @@
 package library.management.system;
 
-class Book {
+final public class Book {
     private final int bookId;
     private final String title;
     private final String author;

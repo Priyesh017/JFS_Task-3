@@ -1,12 +1,12 @@
 package library.management.system;
 
-class Library {
+final class Library {
     final Book[] books;
 
     String format = "%-10s %-25s %-25s %-10s%n";
 
     Library() {
-        this.books = new Book[20];
+        this.books = new Book[10];
 
         // Sample Input
         books[0] = new Book(101, "The Great Gatsby", "F. Scott Fitzgerald", true);
@@ -31,6 +31,12 @@ class Library {
         return countActualLength;
     }
 
+    void rightShift(int bookIndexToBeAdded) {
+        for (int index = actualLength() - 1; index >= bookIndexToBeAdded; index--) {
+            books[index + 1] = books[index];
+        }
+    }
+
     void leftShift(int bookIndexToBeRemoved) {
         for (int index = bookIndexToBeRemoved; index < books.length - 1; index++) {
             books[index] = books[index + 1];
@@ -38,46 +44,59 @@ class Library {
         books[books.length - 1] = null;
     }
 
+    int binarySearch(int findBookId) {
+        int low = 0;
+        int high = actualLength() - 1;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(books[mid].getBookId() == findBookId) {
+                return mid;
+            } else if (books[mid].getBookId() > findBookId) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
     void addBook(Book newBook) {
-        books[actualLength()] = newBook;
+        int insertAt = actualLength();
+        for (int index = 0; index < actualLength(); index++) {
+            if (books[index].getBookId() > newBook.getBookId()) {
+                insertAt = index;
+                break;
+            }
+        }
+        rightShift(insertAt);
+        books[insertAt] = newBook;
         System.out.println("------------------------------------------------------------------------");
-        System.out.println("Book Added");
+        System.out.println("Book Added Successfully at index: " + insertAt);
         displayBook();
     }
 
     void removeBook(int bookId) {
-        boolean found = false;
-        for (int index = 0; index < books.length; index++) {
-            if (books[index] != null && books[index].getBookId() == bookId) {
-                leftShift(index);
-                System.out.println("------------------------------------------------------------------------");
-                System.out.println("Book Removed");
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            System.out.println("Book ID: " + bookId + " not found.");
-        } else {
+        int indexToRemove = binarySearch(bookId);
+        if (indexToRemove >= 0) {
+            leftShift(indexToRemove);
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println("Book Removed at index: " + indexToRemove);
             displayBook();
+        } else {
+            System.out.println("Book ID: " + bookId + " not found.");
         }
     }
 
     void searchBook(int bookId) {
-        boolean found = false;
-        for (Book book : books) {
-            if (book != null && book.getBookId() == bookId) {
-                System.out.println("------------------------------------------------------------------------");
-                System.out.println("Book Found");
-                System.out.println("------------------------------------------------------------------------");
-                System.out.printf(format, "BookID", "Title", "Author", "Available");
-                System.out.println("------------------------------------------------------------------------");
-                System.out.printf(format, book.getBookId(), book.getTitle(), book.getAuthor(), book.isAvailable() ? "Yes" : "No");
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
+        int foundIndex = binarySearch(bookId);
+        if(foundIndex >= 0) {
+            System.out.println("------------------------------------------------------------------------");
+            System.out.println("Book Found at index: " + foundIndex);
+            System.out.println("------------------------------------------------------------------------");
+            System.out.printf(format, "BookID", "Title", "Author", "Available");
+            System.out.println("------------------------------------------------------------------------");
+            System.out.printf(format, books[foundIndex].getBookId(), books[foundIndex].getTitle(), books[foundIndex].getAuthor(), books[foundIndex].isAvailable() ? "Yes" : "No");
+        } else {
             System.out.println("Book ID " + bookId + " not found.");
         }
     }

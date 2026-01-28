@@ -13,15 +13,15 @@ public class Main {
             System.out.println("2. Remove a Book");
             System.out.println("3. Search for a Book");
             System.out.println("4. Display all the Books in thr Library");
-            System.out.println("5. Exit");
+            System.out.println("5. Exit Library");
             System.out.println("========================================");
             System.out.print("Enter your choice: ");
-            int ch = sc.nextInt();
-            switch(ch) {
+            int choice = sc.nextInt();
+            switch(choice) {
                 case 1:
                     if(obj.actualLength() == obj.books.length) {
-                        System.out.println("No Space Available");
-                        return;
+                        System.out.println("Full Library[No Space Available]");
+                        break;
                     }
                     System.out.print("Enter Book ID: ");
                     int bookId = sc.nextInt();
@@ -37,12 +37,20 @@ public class Main {
                     obj.addBook(newBook);
                     break;
                 case 2:
-                    System.out.print("Enter Book ID to remove: ");
+                    if(obj.actualLength() == 0) {
+                        System.out.println("Empty Library[No Books Present]");
+                        break;
+                    }
+                    System.out.print("Enter Book ID to be remove: ");
                     int bookId1 = sc.nextInt();
                     obj.removeBook(bookId1);
                     break;
                 case 3:
-                    System.out.print("Enter Book ID to search: ");
+                    if(obj.actualLength() == 0) {
+                        System.out.println("Empty Library[No Books Present]");
+                        break;
+                    }
+                    System.out.print("Enter Book ID to be searched: ");
                     int bookId2 = sc.nextInt();
                     obj.searchBook(bookId2);
                     break;

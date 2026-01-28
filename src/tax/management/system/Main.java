@@ -15,7 +15,7 @@ public class Main {
         System.out.print("Enter Salary: ");
         double salary = sc.nextDouble();
 
-        Employee employee = new Employee(id, name, salary);
+        Taxable employee = new Employee(id, name, salary);
         System.out.println(employee.display());
 
         System.out.println("\nEnter Product Details");
@@ -26,7 +26,7 @@ public class Main {
         System.out.print("Enter Quantity: ");
         int quantity = sc.nextInt();
 
-        Product product = new Product(pid, price, quantity);
+        Taxable product = new Product(pid, price, quantity);
         System.out.println(product.display());
     }
 }
